@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Girlsbar&Darts with</title>
+    <!-- 本番環境ではTailwind CSSのCDNは非推奨ですが、この開発環境ではプレビューのために使用しています。本番サイトを構築する際は、Tailwind CLIやPostCSSプラグインとしてインストールしてください。 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', 'Inter', sans-serif;
+        }
+        /* スライドショーの基本的なスタイル (クロスディゾルブ) */
+        .slideshow-container {
+            width: 100%;
+            height: 60vh;
+            max-height: 400px;
+            position: relative;
+            margin: auto;
+            overflow: hidden;
+            background-color: #000; /* 切り替え時の背景色 */
+        }
+        .slide {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+        .slide.visible {
+            opacity: 1;
+        }
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        /* グラデーションテキスト */
+        .gradient-text {
+            background: linear-gradient(45deg, #ec4899, #38bdf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- ヘッダー -->
+    <header class="bg-white/80 backdrop-blur-md shadow-sm fixed top-0 left-0 right-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <h1 class="text-xl font-bold gradient-text">Girlsbar&Darts with</h1>
+            <button id="menu-btn" class="text-2xl text-gray-700 focus:outline-none md:hidden">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- モバイルメニュー (非表示) -->
+    <div id="mobile-menu" class="hidden fixed inset-0 bg-black/50 z-40">
+        <nav class="fixed top-0 right-0 h-full w-64 bg-white shadow-lg p-6 pt-20">
+            <button id="close-btn" class="absolute top-4 right-4 text-2xl text-gray-600">&times;</button>
+            <ul class="space-y-6">
+                <li><a href="#news" class="text-lg text-gray-700 hover:text-pink-500 transition-colors">News</a></li>
+                <li><a href="#coupon" class="text-lg text-gray-700 hover:text-pink-500 transition-colors">Coupon</a></li>
+                <li><a href="#system" class="text-lg text-gray-700 hover:text-pink-500 transition-colors">System</a></li>
+                <li><a href="#cast" class="text-lg text-gray-700 hover:text-pink-500 transition-colors">Cast</a></li>
+                <li><a href="#recruit" class="text-lg text-gray-700 hover:text-pink-500 transition-colors">Recruit</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <main class="pt-16">
+        <!-- トップセクション (スライドショー) -->
+        <section id="top" class="relative">
+            <div class="slideshow-container">
+                <div class="slide">
+                    <img src="img/slide1.jpg" alt="店内の写真1">
+                </div>
+                <div class="slide">
+                    <img src="img/slide2.jpg" alt="店内の写真2">
+                </div>
+                <div class="slide">
+                    <img src="img/slide3.jpg" alt="店内の写真3">
+                </div>
+            </div>
+            <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+                <div class="text-center text-white">
+                    <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Girlsbar & Darts</h2>
+                    <p class="text-4xl sm:text-5xl font-extrabold gradient-text mt-2">with</p>
+                    <p class="mt-4 text-lg">楽しい時間、最高の思い出をあなたと。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsセクション -->
+        <section id="news" class="py-12 px-4">
+            <div class="container mx-auto max-w-3xl">
+                <h2 class="text-3xl font-bold text-center mb-8 gradient-text">News</h2>
+                <div class="space-y-6">
+                    <!-- ダミーニュース -->
+                    <div class="bg-white p-4 rounded-lg shadow-md border-l-4 border-pink-400">
+                        <p class="text-sm text-gray-500">2025.10.15</p>
+                        <h3 class="font-bold text-lg mt-1">ハロウィンイベント開催のお知らせ</h3>
+                        <p class="text-gray-600 mt-2">10月28日〜31日はキャストが可愛いコスプレでお出迎え！限定ドリンクもあります♪</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-md border-l-4 border-sky-400">
+                        <p class="text-sm text-gray-500">2025.10.10</p>
+                        <h3 class="font-bold text-lg mt-1">週末限定ダーツ大会！</h3>
+                        <p class="text-gray-600 mt-2">毎週土曜日はダーツ大会を開催！優勝者には豪華景品をご用意しています。</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-md border-l-4 border-pink-400">
+                        <p class="text-sm text-gray-500">2025.10.01</p>
+                        <h3 class="font-bold text-lg mt-1">グランドオープン！</h3>
+                        <p class="text-gray-600 mt-2">Girlsbar&Darts withが新規オープンしました！皆様のご来店を心よりお待ちしております。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Couponセクション -->
+        <section id="coupon" class="py-12 px-4 bg-pink-50">
+            <div class="container mx-auto max-w-3xl">
+                <h2 class="text-3xl font-bold text-center mb-8 gradient-text">Coupon</h2>
+                <div class="bg-white rounded-2xl shadow-lg p-6 text-center border-4 border-dashed border-pink-300">
+                    <h3 class="text-2xl font-bold text-pink-500">HP限定スペシャルクーポン</h3>
+                    <p class="text-gray-600 my-4">この画面をスタッフにご提示ください</p>
+                    <div class="bg-gradient-to-r from-pink-400 to-sky-400 text-white font-bold text-xl md:text-2xl py-4 px-6 rounded-lg">
+                        <p>セット料金1000円OFF</p>
+                        <p class="text-lg my-2">または</p>
+                        <p>30分延長無料</p>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-4">※他の割引との併用はできません。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Systemセクション -->
+        <section id="system" class="py-12 px-4">
+            <div class="container mx-auto max-w-3xl">
+                <h2 class="text-3xl font-bold text-center mb-8 gradient-text">System</h2>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="p-6 bg-gradient-to-r from-sky-100 to-pink-100">
+                         <h3 class="text-xl font-bold text-center">料金システム</h3>
+                    </div>
+                    <ul class="divide-y divide-gray-200">
+                        <li class="p-4 flex justify-between items-center"><span>60分1セット (飲み放題)</span><span class="font-bold">4,000円</span></li>
+                        <li class="p-4">
+                            <span class="font-semibold">飲み放題メニュー</span>
+                            <p class="text-sm text-gray-600 mt-1">ビール, 焼酎(芋, 麦, 米, ジャスミン, 鏡月), ウイスキー, ブランデー, ハイボール, 各種カクテル, ソフトドリンク</p>
+                        </li>
+                        <li class="p-4 flex justify-between items-center"><span>延長 60分</span><span class="font-bold">4,000円</span></li>
+                        <li class="p-4 flex justify-between items-center"><span>延長 30分</span><span class="font-bold">2,500円</span></li>
+                        <li class="p-4 flex justify-between items-center"><span>キャストドリンク</span><span class="font-bold">1,000円</span></li>
+                        <li class="p-4 flex justify-between items-center"><span>ショット</span><span class="font-bold">2,000円</span></li>
+                        <li class="p-4 flex justify-between items-center"><span>カラオケ (1曲)</span><span class="font-bold">100円</span></li>
+                        <li class="p-4 flex justify-between items-center"><span>カラオケ (歌い放題)</span><span class="font-bold">1,000円</span></li>
+                        <li class="p-4 flex justify-between items-center"><span>ダーツ</span><span class="font-bold">100円〜</span></li>
+                    </ul>
+                     <div class="p-4 bg-gray-100 text-right">
+                        <p class="text-sm text-gray-600">※スタッフドリンクは別料金となります。</p>
+                        <p class="text-sm text-gray-600">※電子決済手数料は無料です。</p>
+                        <p class="font-bold mt-2">TAX 20%</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Castセクション -->
+        <section id="cast" class="py-12 px-4 bg-sky-50">
+            <div class="container mx-auto max-w-5xl">
+                <h2 class="text-3xl font-bold text-center mb-8 gradient-text">Cast</h2>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                    <!-- ダミーキャストデータ -->
+                    <script>
+                        const casts = [
+                            { name: 'あい', height: 160, bwh: '85/58/86', charm: 'えくぼ', hobby: 'ダーツ, カラオケ', likes: 'カシスオレンジ', dislikes: '日本酒' },
+                            { name: 'りな', height: 158, bwh: '83/57/85', charm: '笑顔', hobby: '映画鑑賞', likes: 'ファジーネーブル', dislikes: 'ビール' },
+                            { name: 'みう', height: 165, bwh: '88/60/88', charm: 'スタイル', hobby: 'ショッピング', likes: 'シャンパン', dislikes: '焼酎' },
+                            { name: 'さくら', height: 155, bwh: '82/56/83', charm: '優しい声', hobby: '料理', likes: '梅酒', dislikes: 'ウイスキー' },
+                            { name: 'ゆい', height: 162, bwh: '86/59/87', charm: '長い髪', hobby: '旅行', likes: 'ジントニック', dislikes: 'テキーラ' },
+                            { name: 'はな', height: 168, bwh: '90/61/90', charm: 'おっとり', hobby: '読書', likes: 'ワイン', dislikes: 'ウォッカ' },
+                            { name: 'もも', height: 153, bwh: '84/57/84', charm: '甘え上手', hobby: 'ゲーム', likes: 'カルーアミルク', dislikes: '辛口のお酒' },
+                            { name: 'あやか', height: 163, bwh: '87/59/88', charm: '聞き上手', hobby: 'カフェ巡り', likes: 'モヒート', dislikes: '泡盛' }
+                        ];
+
+                        casts.forEach((cast, index) => {
+                            document.write(`
+                                <div class="bg-white rounded-lg shadow-lg overflow-hidden text-center transform hover:scale-105 transition-transform duration-300">
+                                    <img src="https://placehold.co/300x400/f3f4f6/3b82f6?text=${cast.name}" alt="${cast.name}の写真" class="w-full h-48 object-cover">
+                                    <div class="p-4">
+                                        <h3 class="font-bold text-lg text-pink-500">${cast.name}</h3>
+                                        <div class="text-left text-sm text-gray-600 mt-2 space-y-1">
+                                            <p><i class="fa-solid fa-ruler-vertical text-sky-400 w-4"></i> ${cast.height}cm</p>
+                                            <p><i class="fa-solid fa-heart text-sky-400 w-4"></i> ${cast.charm}</p>
+                                            <p><i class="fa-solid fa-martini-glass text-sky-400 w-4"></i> ${cast.likes}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            `);
+                        });
+                    </script>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recruitセクション -->
+        <section id="recruit" class="py-12 px-4">
+            <div class="container mx-auto max-w-3xl">
+                <h2 class="text-3xl font-bold text-center mb-8 gradient-text">Recruit</h2>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <p class="text-center text-lg font-semibold mb-6">新しい仲間を大募集中！<br>未経験者さんも大歓迎です。</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center mb-8">
+                        <a href="tel:080-2026-2704" class="bg-pink-500 text-white font-bold py-3 px-4 rounded-full hover:bg-pink-600 transition-colors flex items-center justify-center">
+                            <i class="fas fa-phone mr-2"></i>電話で応募
+                        </a>
+                        <a href="mailto:k.k.meke2212@gmail.com" class="bg-sky-500 text-white font-bold py-3 px-4 rounded-full hover:bg-sky-600 transition-colors flex items-center justify-center">
+                            <i class="fas fa-envelope mr-2"></i>メールで応募
+                        </a>
+                        <button id="line-btn" class="bg-green-500 text-white font-bold py-3 px-4 rounded-full hover:bg-green-600 transition-colors flex items-center justify-center">
+                            <i class="fab fa-line mr-2"></i>LINEで応募
+                        </button>
+                    </div>
+
+                    <form action="#" method="POST" class="space-y-4">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700">お名前</label>
+                            <input type="text" id="name" name="name" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-pink-500 focus:border-pink-500" required>
+                        </div>
+                        <div>
+                            <label for="age" class="block text-sm font-medium text-gray-700">年齢</label>
+                            <input type="number" id="age" name="age" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-pink-500 focus:border-pink-500" required>
+                        </div>
+                         <div>
+                            <label for="phone" class="block text-sm font-medium text-gray-700">電話番号</label>
+                            <input type="tel" id="phone" name="phone" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-pink-500 focus:border-pink-500" required>
+                        </div>
+                         <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700">メールアドレス</label>
+                            <input type="email" id="email" name="email" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-pink-500 focus:border-pink-500" required>
+                        </div>
+                         <div>
+                            <label for="line_id" class="block text-sm font-medium text-gray-700">LINE ID <span class="text-xs">(任意)</span></label>
+                            <input type="text" id="line_id" name="line_id" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-pink-500 focus:border-pink-500">
+                        </div>
+                         <div>
+                            <label for="interview_date" class="block text-sm font-medium text-gray-700">希望面接日</label>
+                            <input type="date" id="interview_date" name="interview_date" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-pink-500 focus:border-pink-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">希望の返信方法</label>
+                            <div class="mt-2 space-x-4">
+                               <label class="inline-flex items-center"><input type="radio" name="reply_method" value="phone" class="text-pink-600 focus:ring-pink-500"> <span class="ml-2">電話</span></label>
+                               <label class="inline-flex items-center"><input type="radio" name="reply_method" value="email" class="text-pink-600 focus:ring-pink-500"> <span class="ml-2">メール</span></label>
+                               <label class="inline-flex items-center"><input type="radio" name="reply_method" value="line" class="text-pink-600 focus:ring-pink-500"> <span class="ml-2">LINE</span></label>
+                            </div>
+                        </div>
+                        <div>
+                             <label class="block text-sm font-medium text-gray-700">経験の有無</label>
+                            <div class="mt-2 space-x-4">
+                               <label class="inline-flex items-center"><input type="radio" name="experience" value="yes" class="text-pink-600 focus:ring-pink-500"> <span class="ml-2">有り</span></label>
+                               <label class="inline-flex items-center"><input type="radio" name="experience" value="no" class="text-pink-600 focus:ring-pink-500"> <span class="ml-2">無し</span></label>
+                            </div>
+                        </div>
+                        <div id="experience_details" class="hidden">
+                            <label for="experience_text" class="block text-sm font-medium text-gray-700">経験内容</label>
+                            <textarea id="experience_text" name="experience_text" rows="3" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-pink-500 focus:border-pink-500"></textarea>
+                        </div>
+                        <div>
+                            <label for="days" class="block text-sm font-medium text-gray-700">希望出勤日数/週 <span class="text-xs">(任意)</span></label>
+                            <input type="text" id="days" name="days" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-pink-500 focus:border-pink-500">
+                        </div>
+                        <div>
+                            <label for="wage" class="block text-sm font-medium text-gray-700">希望時給 <span class="text-xs">(任意)</span></label>
+                            <input type="text" id="wage" name="wage" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-pink-500 focus:border-pink-500">
+                        </div>
+
+                        <div>
+                            <button type="submit" class="w-full bg-gradient-to-r from-pink-500 to-sky-500 text-white font-bold py-3 px-4 rounded-full hover:opacity-90 transition-opacity">入力内容を送信</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- フッター -->
+    <footer class="bg-gray-800 text-white py-8 px-4">
+        <div class="container mx-auto text-center">
+            <h3 class="text-2xl font-bold gradient-text">Girlsbar&Darts with</h3>
+            <p class="mt-2 text-gray-400">担当：米田 (080-2026-2704)</p>
+            <p class="mt-1 text-gray-400">Email: k.k.meke2212@gmail.com</p>
+            <p class="text-sm mt-6 text-gray-500">&copy; 2025 Girlsbar&Darts with. All Rights Reserved.</p>
+        </div>
+    </footer>
+    
+    <!-- LINE ID コピーモーダル -->
+    <div id="line-modal" class="hidden fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg p-6 text-center max-w-sm w-full relative">
+             <button id="close-modal-btn" class="absolute top-2 right-3 text-2xl text-gray-500 hover:text-gray-800">&times;</button>
+            <i class="fab fa-line text-5xl text-green-500 mb-4"></i>
+            <h3 class="text-lg font-bold">LINE IDをコピー</h3>
+            <p class="text-gray-600 my-2">以下のIDをコピーして、LINEで友達追加してください。</p>
+            <p id="line-id-text" class="bg-gray-100 p-2 rounded font-mono text-lg my-4">k.k.meke2212</p>
+            <button id="copy-btn" class="w-full bg-green-500 text-white font-bold py-2 px-4 rounded-full hover:bg-green-600 transition-colors">IDをコピーする</button>
+            <p id="copy-feedback" class="text-sm text-green-600 mt-2 h-5"></p>
+        </div>
+    </div>
+
+
+    <script>
+        // スライドショー (クロスディゾルブ)
+        const slides = document.getElementsByClassName("slide");
+        let currentSlideIndex = 0;
+
+        function crossfadeSlides() {
+            if (slides.length < 2) return; // 画像が2枚未満なら何もしない
+
+            const previousSlideIndex = currentSlideIndex;
+            currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+            
+            // 現在のスライドをフェードアウト
+            slides[previousSlideIndex].classList.remove('visible');
+            // 次のスライドをフェードイン
+            slides[currentSlideIndex].classList.add('visible');
+        }
+
+        // 初期設定
+        if (slides.length > 0) {
+            slides[0].classList.add('visible'); // 最初のスライドを可視化
+            setInterval(crossfadeSlides, 4000); // 4秒ごとに切り替え
+        }
+
+        // モバイルメニュー
+        const menuBtn = document.getElementById('menu-btn');
+        const closeBtn = document.getElementById('close-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuLinks = mobileMenu.querySelectorAll('a');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+        });
+
+        closeBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+        });
+        
+        mobileMenu.addEventListener('click', (e) => {
+            if (e.target === mobileMenu) {
+                 mobileMenu.classList.add('hidden');
+            }
+        });
+
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // 求人フォームの経験有無
+        const experienceRadios = document.querySelectorAll('input[name="experience"]');
+        const experienceDetails = document.getElementById('experience_details');
+
+        experienceRadios.forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                if(e.target.value === 'yes') {
+                    experienceDetails.classList.remove('hidden');
+                } else {
+                    experienceDetails.classList.add('hidden');
+                }
+            });
+        });
+
+        // LINEモーダル
+        const lineBtn = document.getElementById('line-btn');
+        const lineModal = document.getElementById('line-modal');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+        const copyBtn = document.getElementById('copy-btn');
+        const lineIdText = document.getElementById('line-id-text');
+        const copyFeedback = document.getElementById('copy-feedback');
+
+        lineBtn.addEventListener('click', () => {
+            lineModal.classList.remove('hidden');
+        });
+        
+        closeModalBtn.addEventListener('click', () => {
+            lineModal.classList.add('hidden');
+            copyFeedback.textContent = '';
+        });
+        
+        lineModal.addEventListener('click', (e) => {
+            if (e.target === lineModal) {
+                 lineModal.classList.add('hidden');
+                 copyFeedback.textContent = '';
+            }
+        });
+
+        copyBtn.addEventListener('click', () => {
+            const textToCopy = lineIdText.textContent;
+            
+            // execCommandは非推奨ですが、iframe環境での互換性のために使用します
+            const textArea = document.createElement('textarea');
+            textArea.value = textToCopy;
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                copyFeedback.textContent = 'コピーしました！';
+            } catch (err) {
+                copyFeedback.textContent = 'コピーに失敗しました';
+                console.error('Fallback: Oops, unable to copy', err);
+            }
+            document.body.removeChild(textArea);
+
+            setTimeout(() => {
+                copyFeedback.textContent = '';
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
+
