@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理者ダッシュボード - Girlsbar&Darts with</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body { font-family: 'Noto Sans JP', sans-serif; }
+        .gradient-text {
+            background: linear-gradient(45deg, #ec4899, #38bdf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .tab-btn.active {
+            border-bottom-color: #ec4899;
+            color: #ec4899;
+            font-weight: bold;
+        }
+        /* モーダルのアニメーション */
+        .modal-enter { animation: fadeIn 0.3s ease-out; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto px-4 py-4">
+            <h1 class="text-xl font-bold gradient-text">管理者ダッシュボード</h1>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-4">
+
+        <div class="flex border-b-2 border-gray-200 mb-6">
+            <button class="tab-btn flex-1 py-2 text-gray-600 border-b-2 border-transparent transition" data-target="news-section">お知らせ</button>
+            <button class="tab-btn flex-1 py-2 text-gray-600 border-b-2 border-transparent transition" data-target="coupon-section">クーポン</button>
+            <button class="tab-btn flex-1 py-2 text-gray-600 border-b-2 border-transparent transition" data-target="cast-section">キャスト</button>
+            <button class="tab-btn flex-1 py-2 text-gray-600 border-b-2 border-transparent transition" data-target="system-section">料金</button>
+        </div>
+
+        <div id="content-sections">
+            <section id="news-section" class="tab-content space-y-6">
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <h3 class="font-bold text-lg mb-4 border-b pb-2">新しいお知らせを追加</h3>
+                    <form id="news-form" class="space-y-4">
+                        <div>
+                            <label for="news-date" class="block text-sm font-medium text-gray-700">日付</label>
+                            <input type="date" id="news-date" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md" required>
+                        </div>
+                        <div>
+                            <label for="news-title" class="block text-sm font-medium text-gray-700">タイトル</label>
+                            <input type="text" id="news-title" placeholder="ハロウィンイベント開催！" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md" required>
+                        </div>
+                        <div>
+                            <label for="news-content" class="block text-sm font-medium text-gray-700">内容</label>
+                            <textarea id="news-content" rows="3" placeholder="限定ドリンクもあります♪" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-pink-500 text-white font-bold py-2 px-4 rounded-md hover:bg-pink-600 transition">追加する</button>
+                    </form>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <h3 class="font-bold text-lg mb-2 border-b pb-2">お知らせ一覧</h3>
+                    <div id="news-list" class="space-y-3">
+                        </div>
+                </div>
+            </section>
+
+            <section id="coupon-section" class="tab-content hidden">
+                <div class="bg-white p-4 rounded-lg shadow">
+                     <h3 class="font-bold text-lg mb-4 border-b pb-2">クーポン編集</h3>
+                     <form id="coupon-form" class="space-y-4">
+                        <div>
+                             <label for="coupon-line1" class="block text-sm font-medium text-gray-700">特典1</label>
+                             <input type="text" id="coupon-line1" value="セット料金1000円OFF" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md">
+                        </div>
+                         <div>
+                             <label for="coupon-line2" class="block text-sm font-medium text-gray-700">特典2</label>
+                             <input type="text" id="coupon-line2" value="30分延長無料" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md">
+                        </div>
+                         <div>
+                             <label for="coupon-note" class="block text-sm font-medium text-gray-700">注意書き</label>
+                             <input type="text" id="coupon-note" value="※他の割引との併用はできません。" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md">
+                        </div>
+                         <button type="submit" class="w-full bg-sky-500 text-white font-bold py-2 px-4 rounded-md hover:bg-sky-600 transition">更新する</button>
+                     </form>
+                </div>
+            </section>
+
+            <section id="cast-section" class="tab-content hidden space-y-6">
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <h3 class="font-bold text-lg mb-4 border-b pb-2">新しいキャストを追加</h3>
+                    <form id="cast-form" class="space-y-4">
+                        <input type="text" id="cast-name" placeholder="名前" class="block w-full px-3 py-2 border border-gray-300 rounded-md" required>
+                        <input type="number" id="cast-height" placeholder="身長" class="block w-full px-3 py-2 border border-gray-300 rounded-md">
+                        <input type="text" id="cast-bwh" placeholder="B/W/H (例: 85/58/86)" class="block w-full px-3 py-2 border border-gray-300 rounded-md">
+                        <input type="text" id="cast-hobby" placeholder="趣味" class="block w-full px-3 py-2 border border-gray-300 rounded-md">
+                        <input type="text" id="cast-likes" placeholder="好きなもの" class="block w-full px-3 py-2 border border-gray-300 rounded-md">
+                         <div>
+                            <label for="cast-image" class="block text-sm font-medium text-gray-700">写真</label>
+                            <input type="file" id="cast-image" class="mt-1 block w-full text-sm">
+                        </div>
+                        <button type="submit" class="w-full bg-pink-500 text-white font-bold py-2 px-4 rounded-md hover:bg-pink-600 transition">追加する</button>
+                    </form>
+                </div>
+                 <div class="bg-white p-4 rounded-lg shadow">
+                    <h3 class="font-bold text-lg mb-2 border-b pb-2">キャスト一覧</h3>
+                    <div id="cast-list-admin" class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                        </div>
+                </div>
+            </section>
+
+            <section id="system-section" class="tab-content hidden">
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <h3 class="font-bold text-lg mb-4 border-b pb-2">料金システム編集</h3>
+                    <div id="system-list" class="space-y-4">
+                        </div>
+                     <button id="add-system-item" class="mt-4 w-full bg-gray-500 text-white font-bold py-2 px-4 rounded-md hover:bg-gray-600 transition">項目を追加</button>
+                     <button id="save-system" class="mt-2 w-full bg-sky-500 text-white font-bold py-2 px-4 rounded-md hover:bg-sky-600 transition">保存する</button>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <div id="edit-modal" class="hidden fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4">
+        <div id="edit-modal-content" class="bg-white rounded-lg p-6 max-w-lg w-full relative modal-enter">
+            <button id="close-modal-btn" class="absolute top-2 right-3 text-2xl text-gray-500 hover:text-gray-800">&times;</button>
+            <h3 id="modal-title" class="text-xl font-bold mb-4 border-b pb-2">編集</h3>
+            <div id="modal-body" class="mt-4">
+                </div>
+        </div>
+    </div>
+    
+    <script src="admin.js"></script>
+</body>
+</html>
